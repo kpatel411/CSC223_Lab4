@@ -4,7 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import utilities.math.MathUtilities;
+//import utilities.math.MathUtilities;
 
 public class PointNodeDatabase {
 	
