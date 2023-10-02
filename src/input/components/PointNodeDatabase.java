@@ -1,5 +1,6 @@
 package input.components;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,5 +64,13 @@ public class PointNodeDatabase {
 			}
 		}
 		return null;
+	}
+	
+	public List<String> getAllNodeNames() {
+		List<String> names = new ArrayList<String>();
+		for (PointNode node : database) {
+			names.add(node.getName());
+		}
+		return names;
 	}
 }

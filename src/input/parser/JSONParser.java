@@ -77,10 +77,9 @@ public class JSONParser
 		return pointNodeDB;
 	}
 	
-	public SegmentNodeDatabase readsSNDB(JSONArray sndbArray) {
+	public SegmentNodeDatabase readsSNDB(JSONArray sndbArray, PointNodeDatabase pointNodeDatabase) {
 		ArrayList<JSONObject> newSNDB = new ArrayList<JSONObject>();
 		ArrayList<JSONObject> adjacencyList = new ArrayList<JSONObject>();
-		ArrayList<String> segmentOrigins = new ArrayList<String>();
 		SegmentNodeDatabase segmentNodeDB = new SegmentNodeDatabase();
 		for (Object obj : sndbArray) {
 			newSNDB.add((JSONObject) obj);
@@ -90,7 +89,7 @@ public class JSONParser
 		}
 		for (JSONObject adjObj : adjacencyList) {
 			List<PointNode> destinationList = new ArrayList<PointNode>();
-			PointNode currentOrigin = pointNodeDatabase.getName(adjObj.get("Origin")); //maybe add helper in pndb to return node with name
+			PointNode currentOrigin = pointNodeDatabase.getNodeByName((String) adjObj.get("Origin")); //maybe add helper in pndb to return node with name
 			destinationList.add((PointNode) adjObj.get("Destination List"));
 			for (PointNode dest : destinationList) {
 				segmentNodeDB.addUndirectedEdge(currentOrigin, dest);
