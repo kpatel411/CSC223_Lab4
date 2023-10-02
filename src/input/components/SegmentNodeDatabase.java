@@ -71,4 +71,12 @@ public class SegmentNodeDatabase {
 		List<SegmentNode> segNodeArray = new ArrayList<SegmentNode>(new LinkedHashSet<SegmentNode>(asSegmentList()));
 		return segNodeArray;
 	}
+	
+	public List<String> edgesAsList(PointNode node) {
+		List<String> segmentNodeList = new ArrayList<String>();
+		for (PointNode nodeOf: _adjLists.get(node)) {
+			segmentNodeList.add(nodeOf.getName());
+		}
+		return segmentNodeList;
+	}
 }

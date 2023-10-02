@@ -69,16 +69,34 @@ public class FigureNode implements ComponentNode
 	}
 	// TODO
 
-	public StringBuilder handleDescription(StringBuilder sb, int level) {
-		
+	public void handleDescription(StringBuilder sb, int level) {
+		sb.append(StringUtilities.indent(level) + "Description: " + _description + "\n");
 	}
-	
-	public StringBuilder handlePoints(StringBuilder sb, int level) {
-		List<String> names = _points.getAllNodeNames();
-	}
-	
-	public StringBuilder handleSegments(StringBuilder sb, int level) {
 
+	public void handlePoints(StringBuilder sb, int level) {
+		sb.append(StringUtilities.indent(level) + "Points: " + "\n");
+		sb.append(StringUtilities.indent(level) + "{" + "\n");
+		List<String> names = _points.getAllNodeNames();
+		for (String name : names) {
+			PointNode currNode = _points.getNodeByName(name);
+			sb.append(StringUtilities.indent(level + 1) + "Point(" + currNode.getName() 
+			+ ")(" + currNode.getX() + ", " + currNode.getY() + ")" + "\n");
+		}
+		sb.append(StringUtilities.indent(level) + "}" + "\n");
+	}
+
+	public void handleSegments(StringBuilder sb, int level) {
+		sb.append(StringUtilities.indent(level) + "Segments: " + "\n");
+		sb.append(StringUtilities.indent(level) + "{" + "\n");
+		List<String> names = _points.getAllNodeNames();
+		for (String name : names) {
+			sb.append(StringUtilities.indent(level+1) + name + " : ");
+			for (String edgeName : _segments.edgesAsList(_points.getNodeByName(name))) {
+				sb.append(edgeName + "    ");
+			}			
+			sb.append("\n");
+		}
+		sb.append(StringUtilities.indent(level) + "}" + "\n");
 	}
 
 }
