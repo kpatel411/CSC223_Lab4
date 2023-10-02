@@ -55,4 +55,13 @@ public class PointNodeDatabase {
 	public PointNode getPoint(double x, double y) {
 		return getPoint(new PointNode(x, y));
 	}
+	
+	public PointNode getNodeByName(String nodeName) {
+		for (PointNode n: database) {
+			if (n.getName().equals(nodeName)) {
+				return n;
+			}
+		}
+		return null;
+	}
 }

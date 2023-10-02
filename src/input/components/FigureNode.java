@@ -44,6 +44,7 @@ public class FigureNode implements ComponentNode
 		//		format example given in the lab instructions? If so, should we
 		//		be creating helper methods that print the values we assign to 
 		//		the instance variables in FigureNode?
+		//	How is unparse different from parse?
 		FigureNode figure = new FigureNode();
         System.out.println("Figure");
         System.out.format("%8s", "{");
