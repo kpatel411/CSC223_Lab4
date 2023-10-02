@@ -44,18 +44,24 @@ public class JSONParser
 		JSONArray sndb = JSONroot.getJSONArray("Segments");
 		
 		PointNodeDatabase pointNodeDatabase = readsPNDB(pndb);
-		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb, pointNodeDatabase);
+		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb);
 		
-		FigureNode newFN = new FigureNode(description, pointNodeDatabase, segmentNodeDatabase);
-		_astRoot = newFN;
-		//from here:
-		//	create a figure node
-		//	pass des/pndb/sndb
-		//	return the figure node as cn
-		//	set whole figure node to root 
-		//junit test -> jsonparser (creates figurenode) -> figurenode (does stuff)
+		_astRoot = (ComponentNode) JSONroot;
+		//Questions for JSONParser class:
+		//	When are we meant to throw parse exceptions if we're allowed to assume
+		//		a reasonable input?
+		//	How does instantiating the root get carried over to ComponentNode, 
+		//		since ComponentNode has no instance variables, only JSONParser 
+		//		and FigureNode do?
+		//	How can we return a ComponentNode object when there is only a root 
+		//		instance variable in this class? Additionally, how does this 
+		//		class help us without instance variables or methods we can 
+		//		call externally when parsing/unparsing? 
+		//	See question in readsSNDB below. 
+		//TODO: finish method
 	}
 	
+	// TODO: implement supporting functionality
 	public PointNodeDatabase readsPNDB(JSONArray pndbArray) {
 		ArrayList<JSONObject> newPNDB = new ArrayList<JSONObject>();
 		PointNodeDatabase pointNodeDB = new PointNodeDatabase();
@@ -71,7 +77,7 @@ public class JSONParser
 		return pointNodeDB;
 	}
 	
-	public SegmentNodeDatabase readsSNDB(JSONArray sndbArray, PointNodeDatabase pointNodeDatabase) {
+	public SegmentNodeDatabase readsSNDB(JSONArray sndbArray) {
 		ArrayList<JSONObject> newSNDB = new ArrayList<JSONObject>();
 		ArrayList<JSONObject> adjacencyList = new ArrayList<JSONObject>();
 		ArrayList<String> segmentOrigins = new ArrayList<String>();
@@ -82,10 +88,9 @@ public class JSONParser
 		for (JSONObject adjList : newSNDB) {
 			adjacencyList.add((JSONObject) adjList);
 		}
-		//TODO: test getNodeByName() method, which was just added to PointNodeDatabase
 		for (JSONObject adjObj : adjacencyList) {
 			List<PointNode> destinationList = new ArrayList<PointNode>();
-			PointNode currentOrigin = pointNodeDatabase.getNodeByName((String) adjObj.get("Origin"));
+			PointNode currentOrigin = pointNodeDatabase.getName(adjObj.get("Origin")); //maybe add helper in pndb to return node with name
 			destinationList.add((PointNode) adjObj.get("Destination List"));
 			for (PointNode dest : destinationList) {
 				segmentNodeDB.addUndirectedEdge(currentOrigin, dest);
@@ -93,4 +98,5 @@ public class JSONParser
 		}
 		return segmentNodeDB;
 	}
+
 }

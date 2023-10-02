@@ -2,7 +2,7 @@
 {
   "Figure" :
   {
-    "Description" : "A freindly straight-faced ghost from pacman.",
+    "Description" : "A freindly straight-faced ghost from pacman. Traingles line the bottom of the ghost.",
     "Points" :
 	  [
 	    {
@@ -94,7 +94,8 @@
         {"H" : ["I"] },
         {"I" : ["J"] },
         {"J" : ["K"] },
-        {"N" : ["O"] }
+        {"N" : ["O"] },
+        {"J" : ["D"] }
       ]
   }
 }
