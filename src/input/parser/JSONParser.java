@@ -45,7 +45,19 @@ public class JSONParser
 		
 		PointNodeDatabase pointNodeDatabase = readsPNDB(pndb);
 		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb);
-
+		
+		_astRoot = (ComponentNode) JSONroot;
+		//Questions for JSONParser class:
+		//	When are we meant to throw parse exceptions if we're allowed to assume
+		//		a reasonable input?
+		//	How does instantiating the root get carried over to ComponentNode, 
+		//		since ComponentNode has no instance variables, only JSONParser 
+		//		and FigureNode do?
+		//	How can we return a ComponentNode object when there is only a root 
+		//		instance variable in this class? Additionally, how does this 
+		//		class help us without instance variables or methods we can 
+		//		call externally when parsing/unparsing? 
+		//	See question in readsSNDB below. 
 		//TODO: finish method
 	}
 	
