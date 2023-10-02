@@ -61,6 +61,7 @@ public class JSONParser
 		//TODO: finish method
 	}
 	
+	// TODO: implement supporting functionality
 	public PointNodeDatabase readsPNDB(JSONArray pndbArray) {
 		ArrayList<JSONObject> newPNDB = new ArrayList<JSONObject>();
 		PointNodeDatabase pointNodeDB = new PointNodeDatabase();
@@ -97,6 +98,5 @@ public class JSONParser
 		}
 		return segmentNodeDB;
 	}
-    // TODO: implement supporting functionality
 
 }
