@@ -46,4 +46,76 @@ class JSONParserTest
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}
+	
+	@Test
+	void collinear_line_segments_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("collinear_line_segments.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	
+	@Test
+	void crossing_symmetric_triangle_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("crossing_symmetric_triangle.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	
+	@Test
+	void fully_connected_irregular_polygon_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("fully_connected_irregular_polygon.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	
+	@Test
+	void catWithTriangles_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("catWithTriangles.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	
+	@Test
+	void octogonSnowman_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("octogonSnowman.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
+	
+	@Test
+	void pacmanGhost_test()
+	{
+		ComponentNode node = JSONParserTest.runFigureParseTest("pacmanGhost.json");
+
+		assertTrue(node instanceof FigureNode);
+		
+		StringBuilder sb = new StringBuilder();
+		node.unparse(sb, 0);
+		System.out.println(sb.toString());
+	}
 }
