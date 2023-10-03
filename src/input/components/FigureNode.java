@@ -38,9 +38,9 @@ public class FigureNode implements ComponentNode
 		level = 0;
 		sb.append(StringUtilities.indent(level) + "Figure" + "\n");
 		sb.append(StringUtilities.indent(level) + "{" + "\n");
-		sb.append(handleDescription(sb, level+1));
-		sb.append(handlePoints(sb, level+1));
-		sb.append(handleSegments(sb, level+1));
+		handleDescription(sb, level+1);
+		handlePoints(sb, level+1);
+		handleSegments(sb, level+1);
 		sb.append(StringUtilities.indent(level) + "}" + "\n");
 		//TODO: print the string builder
 	}
