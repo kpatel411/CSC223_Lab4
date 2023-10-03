@@ -36,29 +36,16 @@ public class JSONParser
 		JSONTokener tokenizer = new JSONTokener(str);
 		JSONObject  JSONroot = (JSONObject)tokenizer.nextValue();
 
-        // TODO: Build the whole AST, check for return class object, and return the root
-		//use getJSONArray
 		JSONObject figure = JSONroot.getJSONObject("Figure");
 		String description = JSONroot.getString("Description");
 		JSONArray pndb = JSONroot.getJSONArray("Points");
 		JSONArray sndb = JSONroot.getJSONArray("Segments");
 		
 		PointNodeDatabase pointNodeDatabase = readsPNDB(pndb);
-		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb);
+		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb, pointNodeDatabase);
 		
-		_astRoot = (ComponentNode) JSONroot;
-		//Questions for JSONParser class:
-		//	When are we meant to throw parse exceptions if we're allowed to assume
-		//		a reasonable input?
-		//	How does instantiating the root get carried over to ComponentNode, 
-		//		since ComponentNode has no instance variables, only JSONParser 
-		//		and FigureNode do?
-		//	How can we return a ComponentNode object when there is only a root 
-		//		instance variable in this class? Additionally, how does this 
-		//		class help us without instance variables or methods we can 
-		//		call externally when parsing/unparsing? 
-		//	See question in readsSNDB below. 
-		//TODO: finish method
+		_astRoot = new FigureNode(description, pointNodeDatabase, segmentNodeDatabase);
+		return _astRoot;
 	}
 	
 	// TODO: implement supporting functionality
