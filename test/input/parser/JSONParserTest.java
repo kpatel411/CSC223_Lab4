@@ -83,6 +83,12 @@ class JSONParserTest
 		System.out.println(sb.toString());
 	}
 	
+//	    /_\__/_\
+//	   /  .  .  \
+//	  |   /_\   |
+// 	  |__ \|/ __| 
+//     \/_____\/
+//     	
 	@Test
 	void catWithTriangles_test()
 	{
@@ -95,6 +101,31 @@ class JSONParserTest
 		System.out.println(sb.toString());
 	}
 	
+//			______
+//		   |      |
+//		   |	  |
+//		___|______|___
+//		   /     \
+//		  /       \
+//	     |    |\   |
+//		 | 	  |/   |
+//		  \       /
+//	_\_    \_____/    _/_
+//	  \   /        \  /
+//	   \ /          \/
+//		|    	     |
+//		| 	   		 |
+//		 \          /
+//	      \________/
+//	     /         \
+//		/           \
+//	   /             \
+//	  |    	          |
+//	  | 	   		  |
+//	   \             /
+// 	    \___________/
+	
+	
 	@Test
 	void octogonSnowman_test()
 	{
@@ -106,6 +137,18 @@ class JSONParserTest
 		node.unparse(sb, 0);
 		System.out.println(sb.toString());
 	}
+	
+//    ___________
+//   /           \
+// 	/             \
+// |  	.    .    |
+// |              |
+// |   	 ____     |
+// |           	  |
+// |          	  |
+// |          	  |
+// |           	  |
+// |/_\/_\/_\/_\/_\|
 	
 	@Test
 	void pacmanGhost_test()
