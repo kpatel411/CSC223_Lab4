@@ -65,11 +65,9 @@ public class FigureNode implements ComponentNode
 		sb.append(StringUtilities.indent(level) + "Segments: " + "\n");
 		sb.append(StringUtilities.indent(level) + "{" + "\n");
 		List<String> names = _points.getAllNodeNames();
-		System.out.println("Name: " + names);
 		for (String name : names) {
 			sb.append(StringUtilities.indent(level+1) + name + " : ");
 			for (String edgeName : _segments.edgesAsList(_points.getNodeByName(name))) {
-				System.out.println("current edgeName: " + edgeName);
 				sb.append(edgeName + "    ");
 			}			
 			sb.append("\n");

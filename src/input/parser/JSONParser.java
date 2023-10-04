@@ -64,8 +64,6 @@ public class JSONParser
 		}
 		for (JSONObject individual_node : newPNDB) {
 			String name = individual_node.getString("name");
-			System.out.println(individual_node.getDouble("x"));
-			System.out.println(individual_node.getDouble("y"));
 			Double x = individual_node.getDouble("x");
 			Double y = individual_node.getDouble("y");
 			pointNodeDB.put(new PointNode(name, x, y));
@@ -81,10 +79,8 @@ public class JSONParser
 		for (Object obj : sndbArray) {
 			newSNDB.add((JSONObject) obj);
 		}
-		System.out.println(newSNDB);
 		for (JSONObject arrayObj : newSNDB) {
 			String key = arrayObj.keys().next();
-			System.out.println("key: " + key);
 			JSONArray values = arrayObj.getJSONArray(key);
 //			System.out.println("x: " + values);
 			for (Object value : values) {
