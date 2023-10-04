@@ -1,3 +1,8 @@
+/**
+ * authors: Grace Warren, Khushi Patel, and Wick Martin 
+ * FigureNode: reads JSON file and reads parsed information to be returned as a final string format figure.
+ */
+
 package input.components;
 
 import java.util.ArrayList;
@@ -35,26 +40,38 @@ public class FigureNode implements ComponentNode
 	@Override
 	public void unparse(StringBuilder sb, int level)
 	{
+		//initialize level of the tree for reading
 		level = 0;
+		//add indentation and formating into the string builder for "Figure"
 		sb.append(StringUtilities.indent(level) + "Figure" + "\n");
 		sb.append(StringUtilities.indent(level) + "{" + "\n");
+		//handle writing the description at the next level below Figure 
 		handleDescription(sb, level+1);
+		//handle writing the points at the next level below Description
 		handlePoints(sb, level+1);
+		//handle writing the segments at the next level below Points
 		handleSegments(sb, level+1);
+		//add and complete remaining details of the figure into the string builder 
 		sb.append(StringUtilities.indent(level) + "}" + "\n");
-		//TODO: print the string builder
 	}
 
 	public void handleDescription(StringBuilder sb, int level) {
+		//adds a description to be output as a string
 		sb.append(StringUtilities.indent(level) + "Description: " + _description + "\n");
 	}
 
 	public void handlePoints(StringBuilder sb, int level) {
+		//adds string structure for the list of points
 		sb.append(StringUtilities.indent(level) + "Points: " + "\n");
 		sb.append(StringUtilities.indent(level) + "{" + "\n");
+		
+		//create a list of strings containing all points 
 		List<String> names = _points.getAllNodeNames();
+		//loop through all names of points and add them to the string builder from the DB
 		for (String name : names) {
+			//get the name of current node in the list 
 			PointNode currNode = _points.getNodeByName(name);
+			//add to string output
 			sb.append(StringUtilities.indent(level + 1) + "Point(" + currNode.getName() 
 			+ ")(" + currNode.getX() + ", " + currNode.getY() + ")" + "\n");
 		}
@@ -62,11 +79,17 @@ public class FigureNode implements ComponentNode
 	}
 
 	public void handleSegments(StringBuilder sb, int level) {
+		//adds string structure for the list of segments
 		sb.append(StringUtilities.indent(level) + "Segments: " + "\n");
 		sb.append(StringUtilities.indent(level) + "{" + "\n");
+		
+		//create a list of strings containing all segments
 		List<String> names = _points.getAllNodeNames();
+		//loop through all names of segments and add them to the string builder from the DB
 		for (String name : names) {
+			//adds to string builder basic structure 
 			sb.append(StringUtilities.indent(level+1) + name + " : ");
+			//loop to create line segments by getting points and writing them as a segment from the DB
 			for (String edgeName : _segments.edgesAsList(_points.getNodeByName(name))) {
 				sb.append(edgeName + "    ");
 			}			

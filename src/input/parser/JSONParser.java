@@ -1,3 +1,9 @@
+/**
+ * authors: Grace Warren, Khushi Patel, and Wick Martin 
+ * JSONParser: takes JSON file and stores information to be read in FigureNode.
+ * takes strings and node objects to be returned as a complete figure.
+ */
+
 package input.parser;
 
 import java.lang.reflect.Array;

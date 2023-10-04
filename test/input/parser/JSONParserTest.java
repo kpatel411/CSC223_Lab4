@@ -1,3 +1,8 @@
+/**
+ * authors: Grace Warren, Khushi Patel, and Wick Martin 
+ * JSONParserTest: Tests for JSONParser functionality and returns string format of figure objects.
+ */
+
 package input.parser;
 
 
