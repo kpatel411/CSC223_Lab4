@@ -74,6 +74,10 @@ public class SegmentNodeDatabase {
 	
 	public List<String> edgesAsList(PointNode node) {
 		List<String> segmentNodeList = new ArrayList<String>();
+		System.out.print(_adjLists.get(node));
+		if (_adjLists.get(node) == null) {
+			return new ArrayList<String>();
+		}
 		for (PointNode nodeOf: _adjLists.get(node)) {
 			segmentNodeList.add(nodeOf.getName());
 		}

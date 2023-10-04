@@ -2,6 +2,7 @@ package input.parser;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -35,11 +36,17 @@ public class JSONParser
 		// Parsing is accomplished via the JSONTokenizer class.
 		JSONTokener tokenizer = new JSONTokener(str);
 		JSONObject  JSONroot = (JSONObject)tokenizer.nextValue();
+		
+		System.out.println(JSONroot);
 
+		if (!JSONroot.has("Figure")) {
+			error("No figure found.");
+		}
 		JSONObject figure = JSONroot.getJSONObject("Figure");
-		String description = JSONroot.getString("Description");
-		JSONArray pndb = JSONroot.getJSONArray("Points");
-		JSONArray sndb = JSONroot.getJSONArray("Segments");
+		
+		String description = figure.getString("Description");
+		JSONArray pndb = figure.getJSONArray("Points");
+		JSONArray sndb = figure.getJSONArray("Segments");
 		
 		PointNodeDatabase pointNodeDatabase = readsPNDB(pndb);
 		SegmentNodeDatabase segmentNodeDatabase = readsSNDB(sndb, pointNodeDatabase);
@@ -57,8 +64,10 @@ public class JSONParser
 		}
 		for (JSONObject individual_node : newPNDB) {
 			String name = individual_node.getString("name");
-			Double x = Double.parseDouble(individual_node.getString("x"));
-			Double y = Double.parseDouble(individual_node.getString("y"));
+			System.out.println(individual_node.getDouble("x"));
+			System.out.println(individual_node.getDouble("y"));
+			Double x = individual_node.getDouble("x");
+			Double y = individual_node.getDouble("y");
 			pointNodeDB.put(new PointNode(name, x, y));
 		}
 		return pointNodeDB;
@@ -66,20 +75,20 @@ public class JSONParser
 	
 	public SegmentNodeDatabase readsSNDB(JSONArray sndbArray, PointNodeDatabase pointNodeDatabase) {
 		ArrayList<JSONObject> newSNDB = new ArrayList<JSONObject>();
-		ArrayList<JSONObject> adjacencyList = new ArrayList<JSONObject>();
+		ArrayList<PointNode> adjacencyList = new ArrayList<PointNode>();
 		SegmentNodeDatabase segmentNodeDB = new SegmentNodeDatabase();
+		//put objects in array list
 		for (Object obj : sndbArray) {
 			newSNDB.add((JSONObject) obj);
 		}
-		for (JSONObject adjList : newSNDB) {
-			adjacencyList.add((JSONObject) adjList);
-		}
-		for (JSONObject adjObj : adjacencyList) {
-			List<PointNode> destinationList = new ArrayList<PointNode>();
-			PointNode currentOrigin = pointNodeDatabase.getNodeByName((String) adjObj.get("Origin")); //maybe add helper in pndb to return node with name
-			destinationList.add((PointNode) adjObj.get("Destination List"));
-			for (PointNode dest : destinationList) {
-				segmentNodeDB.addUndirectedEdge(currentOrigin, dest);
+		System.out.println(newSNDB);
+		for (JSONObject arrayObj : newSNDB) {
+			String key = arrayObj.keys().next();
+			System.out.println("key: " + key);
+			JSONArray values = arrayObj.getJSONArray(key);
+//			System.out.println("x: " + values);
+			for (Object value : values) {
+				segmentNodeDB.addUndirectedEdge(pointNodeDatabase.getNodeByName(key), pointNodeDatabase.getNodeByName((String) value));
 			}
 		}
 		return segmentNodeDB;
