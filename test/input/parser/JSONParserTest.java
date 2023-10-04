@@ -1,3 +1,8 @@
+/**
+ * authors: Grace Warren, Khushi Patel, and Wick Martin 
+ * JSONParserTest: Tests for JSONParser functionality and returns string format of figure objects.
+ */
+
 package input.parser;
 
 
@@ -141,14 +146,14 @@ class JSONParserTest
 //    ____________
 //   /            \
 // 	/              \
-// |  	 .    .    |
-// |               |
-// |   	  ____     |
-// |           	   |
-// |          	   |
-// |          	   |
-// |           	   |
-// |/_\/_\/_\/_\/_\|
+//  |  	 .    .    |
+//  |              |
+//  |     ____     |
+//  |              |
+//  |          	   |
+//  |          	   |
+//  |              |
+//  |/_\/_\/_\/_\/_|
 	
 	@Test
 	void pacmanGhost_test()
