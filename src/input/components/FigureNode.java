@@ -109,6 +109,8 @@ public class FigureNode implements ComponentNode
 		 * 		(indent one level past sub-section outline) Point("name")("x")("y") 
 		 * 		followed by a new line 
 		 */
+		
+		//TODO: make this functionality a part of the DBs: this should not allow private access
 		List<String> names = _points.getAllNodeNames();
 		for (String name : names) {
 			PointNode currNode = _points.getNodeByName(name);

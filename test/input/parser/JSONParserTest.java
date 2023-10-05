@@ -167,3 +167,4 @@ class JSONParserTest
 		System.out.println(sb.toString());
 	}
 }
+//TODO: write images into JSON files and consider more triangle shape test
